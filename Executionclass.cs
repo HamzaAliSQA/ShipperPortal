@@ -9,10 +9,15 @@ namespace ShipperPortal
     [TestFixture]
     public class Executionclass : PageTest
     {
+        
         Loginpage login = new Loginpage();
+        Dashboard dash = new Dashboard();
         MatchedSygnals ms = new MatchedSygnals();
-        Sygnals syg = new Sygnals();
-        AddSygnal addsyg = new AddSygnal();
+        RolesManagement RM = new RolesManagement(); 
+        Services service   = new Services();
+        Logspage log = new Logspage();
+        Sygnal syg = new Sygnal();
+        User user = new User();
         Down_UploadFile DU_File = new Down_UploadFile();
         CompanyProfile Cp = new CompanyProfile();
         Location loc = new Location();
@@ -23,8 +28,8 @@ namespace ShipperPortal
         [SetUp]
         public async Task Setup()
         {
-            extent.LogReport("Shipper Carrier");
-            //extent.ParentLog(NUnit.Framework.TestContext.CurrentContext.Test.Name);
+            extent.LogReport("Carrier Portal");
+            extent.ParentLog(NUnit.Framework.TestContext.CurrentContext.Test.Name);
 
             ContextOptions();
 
@@ -39,7 +44,7 @@ namespace ShipperPortal
         public async Task Teardown()
         {
             Thread.Sleep(3000);
-            // Stop tracing and export it into a zip archive.
+             //Stop tracing and export it into a zip archive.
             await Context.Tracing.StopAsync(new()
             {
                 Path = @"trace/" + TestContext.CurrentContext.Test.MethodName + "_" + DateTime.Now.ToString("yyyymmddhhmmss").ToString() + ".zip"
@@ -58,27 +63,39 @@ namespace ShipperPortal
         }
         [Test]
         [AllureStep]
-        public async Task Matched_Sygnals()
+        public async Task CarrierPortal()
         {
             await login.Login(Page);
-            await DU_File.DownUploadFile(Page);
-            //await addsyg.AddnewSygnal(Page);
+            await Task.Delay(3000);
+            await dash.DashboardFeature(Page);
+            await Task.Delay(3000);
+            await ms.Matched_sygnals(Page);
+            await Task.Delay(3000);
+            await syg.sygnal(Page);
+            await Task.Delay(3000);
+            await RM.rolesManagement(Page);
+            await Task.Delay(3000);
+            await log.Logs(Page);
+            await Task.Delay(3000);
+            await Cp.C_Profile(Page);
+            await Task.Delay(2000);
+            await service.service(Page);
+            await Task.Delay(2000);
+            await ins.CP_Insurance(Page);
+            await Task.Delay(2000);
+            await loc.CP_Location(Page);
             //await trailer.CP_Trailer(Page);
-            //await ins.CP_Insurance(Page);
-            //await loc.CP_Location(Page);
-            //await Cp.C_Profile(Page);
-            
-            //await ms.Matched_sygnals(Page);
             //await Task.Delay(3000);
-            //await syg.sygnals(Page);
+            //await user.users(Page);
         }
-        /*
+        
         [Test]
         [AllureStep]
         public async Task Sygnals()
         {
             await login.Login(Page);
-            await syg.sygnals(Page);
+            await log.Logs(Page);
+
         }
         /*[Test]
         [AllureStep]

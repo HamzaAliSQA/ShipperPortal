@@ -20,35 +20,37 @@ namespace ShipperPortal
             await navigationTask;
 
             //await bp.Wait(2000);
+            
+            //For Search
+            extent.ChildLog("Search");
+            await bp.SimpleClick(page, "//label[text()='Search']/parent::div//following-sibling::div//input");
+            await bp.Write(page, "//label[text()='Search']/parent::div//following-sibling::div//input", "Austin", "Search");
+
             //For Origin
             extent.ChildLog("Origin");
             await bp.SimpleClick(page, "//label[text()='Origin']/parent::div//following-sibling::div//input");
-            await bp.Write(page, "//label[text()='Origin']/parent::div//following-sibling::div//input", "Chester", "SygnalsOrigin");
+            await bp.Write(page, "//label[text()='Origin']/parent::div//following-sibling::div//input", "Austin", "SygnalsOrigin");
 
             //For Destionation
             extent.ChildLog("Destination");
             await bp.SimpleClick(page, "//label[text()='Destination']/parent::div//following-sibling::div//input");
-            await bp.Write(page, "//label[text()='Destination']/parent::div//following-sibling::div//input", "United States", "SygnalsDestination");
+            await bp.Write(page, "//label[text()='Destination']/parent::div//following-sibling::div//input", "Tyler", "SygnalsDestination");
 
             //For Trailer Type
             extent.ChildLog("Trailer Type");
             await bp.SimpleClick(page, "//label[text()='Trailer Type']/following-sibling::div/div");
             await bp.Click(page, "//li[text()='Reefer']", "SygnalsTrailerType");
 
-            //Dead Head
-            extent.ChildLog("Dead Head");
-            await bp.SimpleClick(page, "//div[contains(@class,'MuiGrid-root')]//input[@placeholder='Dead Head']");
-            await bp.Write(page, "//div[contains(@class,'MuiGrid-root')]//input[@placeholder='Dead Head']", "2", "SygnalsDeadHead");
-
+           
             //For Volume
             extent.ChildLog("Volume");
             await bp.SimpleClick(page, "//label[text()='Volume']/following-sibling::div/input");
-            await bp.Write(page, "//label[text()='Volume']/following-sibling::div/input", "3", "SygnalsVolume");
+            await bp.Write(page, "//label[text()='Volume']/following-sibling::div/input", "548", "SygnalsVolume");
 
             //For Frequency
             extent.ChildLog("Volume Frequency");
             await bp.SimpleClick(page, "//label[text()='Volume Frequency']/following-sibling::div/div");
-            await bp.Click(page, "//li[text()= 'LPM']", "SygnalsFrequency");
+            await bp.Click(page, "//li[text()= 'LPY']", "SygnalsFrequency");
         }
     }
 }

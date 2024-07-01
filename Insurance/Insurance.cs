@@ -14,50 +14,30 @@ namespace ShipperPortal
         public async Task CP_Insurance(IPage page)
         {
             extent.ParentLog("Company Profile:Insurance");
-            extent.ChildLog("Insurance");
-            await bp.SimpleClick(page, "//span/div[text()='h']");
+       //     extent.ChildLog("Insurance");
+            await bp.Wait(10000);
+      //    await bp.SimpleClick(page, "//span/div[text()='h']");
             //For Company Profile view
-            await bp.Click(page, "//ul/li/div[text() ='Company Profile']", "Company Profile");
+      //      await bp.Click(page, "//ul/li/div[text() ='Company Profile']", "Company Profile");
 
             //await Task.Delay(3000);
-            await page.WaitForSelectorAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
+      //      await page.WaitForSelectorAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
 
             // Click the div
-            await page.ClickAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
-
-            //For Edit Button
-            extent.ChildLog("Edit Button");
-            await bp.Click(page, "//div/button[text()='Edit']", "Edit Button");
+       //    await page.ClickAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
 
             //for Insurance Tab
             extent.ChildLog("Insurance Tab");
-            await bp.Click(page, "//div[contains(@class,'MuiTabs-scroller')]/div/button[text()='Insurance ']","InsuranceTab");
+            await bp.Click(page, "//div[contains(@class,'MuiTabs-scroller')]/div/button[text()='Insurance']","InsuranceTab");
 
-            //for screen scroll down
-            await page.EvaluateAsync(@"window.scrollBy(0, 1000);");
-
-            //For General Liability
-            await bp.SimpleClick(page, "//label[text() ='General Liability']/following-sibling::div/input");
-            await bp.Write(page, "//label[text() ='General Liability']/following-sibling::div/input","5434563","GeneralLiability");
-
-            //For Umbrella
-            await bp.SimpleClick(page, "//label[text() ='Umbrella']/following-sibling::div/input");
-            await bp.Write(page, "//label[text() ='Umbrella']/following-sibling::div/input","45645","UmbrellaAmount");
-
-            //For Workers Comp
-            await bp.SimpleClick(page, "//label[text() ='Workers Compensation']/following-sibling::div/input");
-            await bp.Write(page, "//label[text() ='Workers Compensation']/following-sibling::div/input", "45", "workersComp");
-
-            //for Auto Liability
-            await bp.SimpleClick(page, "//label[text() ='Auto Liability']/following-sibling::div/input");
-            await bp.Write(page, "//label[text() ='Auto Liability']/following-sibling::div/input","60000","AutoLiability");
-
+            await bp.Wait(6000);
             //For Cargo
             await bp.SimpleClick(page, "//label[text() ='Cargo']/following-sibling::div/input");
-            await bp.Write(page, "//label[text() ='Cargo']/following-sibling::div/input","11000000","Cargo");
+            await bp.Write(page, "//label[text() ='Cargo']/following-sibling::div/input","60000","Cargo");
 
-
-
+            //For Save Button
+            extent.ChildLog("Profile:Save Button");
+            await bp.Click(page, "//div/button[text()='Save']", "Profile:SaveButton");
         }
     }
 }

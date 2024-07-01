@@ -20,7 +20,7 @@ namespace ShipperPortal
         public void LogReport(string testcase)
         {
             extentReports = new ExtentReports();
-            dirpath = @"D:\Projects\UpdatedProject\ShipperPortal\ScreenShot\" + "_" + testcase;
+            dirpath = @"D:\Projects\UpdatedProject\CarrierPortal\CarrierPortal\ScreenShot\" + "_" + testcase;
 
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(dirpath);
             htmlReporter.Config.Theme = Theme.Standard;
@@ -29,7 +29,7 @@ namespace ShipperPortal
 
         public async Task TakeScreenshot(IPage page, Status status, string stepDetail)
         {
-            string path = @"D:\Projects\UpdatedProject\ShipperPortal\ScreenShot\" + stepDetail;
+            string path = @"D:\Projects\UpdatedProject\CarrierPortal\CarrierPortal\ScreenShot\" + stepDetail;
             pathWithFileNameExtension = @path + ".png";
             await page.Locator("body").ScreenshotAsync(new LocatorScreenshotOptions { Path = pathWithFileNameExtension });
             TestContext.AddTestAttachment(pathWithFileNameExtension);

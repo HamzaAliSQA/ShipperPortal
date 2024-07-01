@@ -11,25 +11,27 @@ namespace ShipperPortal
     {
         Basepage bp = new Basepage();
         ExtentReport extent = new ExtentReport();
+        public string namevalue = "Testing Club";
         public async Task CP_Location(IPage page)
         {
             extent.ParentLog("Company Profile:Location");
-            extent.ChildLog("Location");
-            await bp.SimpleClick(page, "//span/div[text()='h']");
+           // extent.ChildLog("Location");
+            await Task.Delay(10000);
+          //  await bp.SimpleClick(page, "//span/div[text()='h']");
             //For Company Profile view
-            await bp.Click(page, "//ul/li/div[text() ='Company Profile']", "Company Profile");
+          //  await bp.Click(page, "//ul/li/div[text() ='Company Profile']", "Company Profile");
 
             //await Task.Delay(3000);
-            await page.WaitForSelectorAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
+         //   await page.WaitForSelectorAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
 
             // Click the div
-            await page.ClickAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
+         ///   await page.ClickAsync(".MuiBackdrop-root.MuiBackdrop-invisible.MuiModal-backdrop.css-xk0aud");
 
             extent.ChildLog("Locations Tab");
             await bp.Click(page, "//div[contains(@class,'MuiTabs-scroller')]/div/button[text()='Locations']","Location Tab");
 
             //For Adding new Location
-            await bp.Click(page, "//button[text()='Add New Location']","Add Location");
+            await bp.Click(page, "//button[text()='Add New Headquarters']", "Add Location");
 
             await bp.Wait(4000);
 
@@ -47,7 +49,7 @@ namespace ShipperPortal
             await bp.Keyboardaction(page, "enter");
 
             //For Name
-            var namevalue = "Testing Club";
+            
             await bp.SimpleClick(page, "//label[text()='Name']/parent::div/div/input");
             await bp.Write(page, "//label[text()='Name']/parent::div/div/input",namevalue,"Name");
 
@@ -60,7 +62,7 @@ namespace ShipperPortal
             await bp.Write(page, "//label[text()='Address']/parent::div/div/input", "Testing Area f/23, Alaska","Address");
 
             //For HQ radio button
-            await bp.Click(page, "//input[@type='checkbox']/parent::span/parent::span/following-sibling::span","HQ Checkbox");
+            await bp.Click(page, "//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-1udb513']/div/p[1]", "HQ Checkbox");
 
             //For Save Button
             await bp.Click(page, "//button[text()='Save']","save button");
@@ -71,16 +73,19 @@ namespace ShipperPortal
             await Task.Delay(4000);
 
             //For Assertion
+            extent.ChildLog("Location:Assertion");
             await bp.Assertion(page, $"//div[contains(@class,'MuiDataGrid-row')]/div[text()='{namevalue}']",namevalue,"record Found");
 
             //For Updation 
-            await bp.Click(page, $"//div[contains(@class,'MuiDataGrid-row')]/div[text()='{namevalue}']/following-sibling::div[6]/div/button[1]","RecordUpdate");
+            extent.ChildLog("Location:Updation");
+            await bp.Click(page, $"//div[contains(@class,'MuiDataGrid-row')]/div[text()='{namevalue}']/following-sibling::div[6]/div/div[1]","RecordUpdate");
             await bp.SimpleClick(page, "//label[text()='Address']/parent::div/div/input");
             await bp.Write(page, "//label[text()='Address']/parent::div/div/input","Testing address Updation","Address update");
             await bp.SimpleClick(page, "//button[text()='Update']");
 
             //For Deletion 
-            await bp.Click(page, $"//div[contains(@class,'MuiDataGrid-row')]/div[text()='{namevalue}']/following-sibling::div[6]/div/button[2]","DeletioBtn");
+            extent.ChildLog("Location:Deletion");
+            await bp.Click(page, $"//div[contains(@class,'MuiDataGrid-row')]/div[text()='{namevalue}']/following-sibling::div[6]/div/div[2]","DeletioBtn");
             await bp.Click(page, "//button[text()='Yes']", "ConfirmBtn");
         }
     }

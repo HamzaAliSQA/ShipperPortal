@@ -12,11 +12,14 @@ namespace ShipperPortal
         Basepage bp = new Basepage();  
         public async Task DownUploadFile(IPage page)
         {
-            await bp.Click(page, "a[href='/lanes/']", "DownUpload Page");
-            var navigationTask = page.WaitForURLAsync("https://staging-shipper.trusygnal.com/lanes/");
-            await navigationTask;
+            await Task.Delay(10000);
+            //await bp.Click(page, "//li/a/div/following-sibling::div/p[text()='Sygnals']", "DownUpload Page");
+            
+           // var navigationTask = page.WaitForURLAsync("https://staging-shipper.trusygnal.com/lanes/");
+            //await navigationTask;
 
-            var ClickSammple = await page.QuerySelectorAsync("//a[@download='shipper-sygnal-import-template.xlsx']");
+            await bp.Click(page, "//a[@download='carrier-sygnal-import-template.xlsx']", "sampledownload");
+            /*var ClickSammple = await page.QuerySelectorAsync("//a[@download='shipper-sygnal-import-template.xlsx']");
 
 
             var downloadsample = await page.QuerySelectorAsync("//a[@href='/import-files/shipper-sygnal-import-template.xlsx']");
@@ -24,6 +27,7 @@ namespace ShipperPortal
             if (downloadsample != null)
             {
                 await downloadsample.ClickAsync();
+                await Task.Delay(20000);
                 // Click the download button to initiate the download
                 Console.WriteLine("Downloaded Succesfully!!");
             }
@@ -32,19 +36,19 @@ namespace ShipperPortal
                 Console.WriteLine("Download button not found");
                 return;
             }
-
+            */
             // Locate the file input element
             var fileInput = page.Locator("input[type='file']");
 
             // Upload the file
-            await fileInput.SetInputFilesAsync("C:/Users/Humza Ali/Downloads/shipper-sygnal-import-template.xlsx");
+            await fileInput.SetInputFilesAsync("C:/Users/Humza Ali/Downloads/carrier-sygnal-import-template.xlsx");
 
 
             await bp.Click(page, "//span[text() = 'Update existing sygnals']/preceding-sibling::span//span", "UpdateSygnals");
 
             await bp.Click(page, "//div/following-sibling::div//button[text() ='Yes']", "Confirmation");
 
-            string filePath = "C:/Users/Humza Ali/Downloads/shipper-sygnal-import-template.xlsx";
+            string filePath = "C:/Users/Humza Ali/Downloads/carrier-sygnal-import-template.xlsx";
             string[] lines = File.ReadAllLines(filePath);
             string fileContent = File.ReadAllText(filePath);
 

@@ -31,7 +31,7 @@ namespace ShipperPortal
             }
             else
             {
-                Console.WriteLine("Not Found");
+                Console.WriteLine($"{stepdetail} Not Found ");
             }
         }
 
@@ -46,7 +46,7 @@ namespace ShipperPortal
             }
             else
             {
-                Console.WriteLine("Not Found");
+                Console.WriteLine($"{stepdetail} Not Found ");
             }
         }
 
@@ -73,7 +73,7 @@ namespace ShipperPortal
             }
             else
             {
-                Console.WriteLine("Not Found");
+                Console.WriteLine($"{stepdetail} Not Found ");
             }
         }
 
